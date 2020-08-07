@@ -20,7 +20,7 @@ namespace libmemkind
             std::shared_ptr<kind_wrapper_type> kind_wrapper_ptr;
         public:
             explicit memory_resource(const char *dir, size_t max_size) :
-                kind_wrapper_ptr(std::make_shared<kind_wrapper_t>(dir, max_size))
+                kind_wrapper_ptr(std::make_shared<kind_wrapper_type>(dir, max_size))
             {
             }
 
@@ -31,7 +31,7 @@ namespace libmemkind
 
             explicit memory_resource(const char *dir, size_t max_size,
                     libmemkind::allocation_policy alloc_policy) :
-                kind_wrapper_ptr(std::make_shared<kind_wrapper_t>(dir, max_size, alloc_policy))
+                kind_wrapper_ptr(std::make_shared<kind_wrapper_type>(dir, max_size, alloc_policy))
             {
             }
 
@@ -57,8 +57,8 @@ namespace libmemkind
             }
 
             bool do_is_equal(const std::pmr::memory_resource& other) const noexcept override {
-                memory_resource* other_ptr = dynamic_cast<memory_resource*>(&other);
-                return (other_ptr != nullptr && kind_wrapper_ptr->get() == other_ptr->kind_wrapper_ptr->get();
+                const memory_resource* other_ptr = dynamic_cast<const memory_resource*>(&other);
+                return (other_ptr != nullptr && kind_wrapper_ptr->get() == other_ptr->kind_wrapper_ptr->get());
             }
         };
     }
