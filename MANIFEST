@@ -62,6 +62,7 @@ include/memkind/internal/tbb_wrapper.h
 include/memkind/internal/vec.h
 include/memkind_allocator.h
 include/memkind_deprecated.h
+include/memkind_memory_resource.h
 include/pmem_allocator.h
 install_astyle.sh
 jemalloc/.appveyor.yml

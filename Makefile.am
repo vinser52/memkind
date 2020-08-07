@@ -32,6 +32,7 @@ include_HEADERS = include/hbw_allocator.h \
                   include/memkind.h \
                   include/memkind_allocator.h \
                   include/memkind_deprecated.h \
+				  include/memkind_memory_resource.h \
                   include/pmem_allocator.h \
                   # end
 
