@@ -44,10 +44,17 @@ namespace libmemkind
         private:
             void* do_allocate(std::size_t bytes, std::size_t alignment) override {
                 void* res = 0;
-
+#if 0
+                //TODO: For some reasons this version throws bad_alloc. Need to investigate
                 if(memkind_posix_memalign(kind_wrapper_ptr->get(), &res, alignment, bytes) != MEMKIND_SUCCESS) {
                     throw std::bad_alloc();
                 }
+#else
+                res = memkind_malloc(kind_wrapper_ptr->get(), bytes);
+                if(!res) {
+                    throw std::bad_alloc();
+                }
+#endif
 
                 return res;
             }
